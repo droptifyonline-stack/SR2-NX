@@ -28,7 +28,7 @@ Current stage: first procedural desktop milestone; native Switch feasibility/int
 - Native toolchain container build failed while synchronizing devkitPro packages: `pkg.devkitpro.org` could not resolve in the container; direct proxy request returned HTTP 403. No NVK build, native compilation or `.nro` was completed. Network settings require review/save/publication before retrying.
 - No Switch is attached. V1 rendering, input, audio, filesystem, frame timing, memory use and 720p/30 FPS remain unverified. Upstream reports a lit Bevy 0.18 GPU hang; do not assume stable rendering from its demonstrations.
 - Windows installation and dump paths are not mounted in this cloud session. No requested proprietary files were found under accessible workspace/temp locations. Real Unity version, bundles, extraction/conversion, shaders, skeletons and actual game scenes remain untested.
-- GitHub API read returned Forbidden, preventing automated PR creation in the current network configuration. Git write access is assessed separately.
+- GitHub API read returned Forbidden, preventing automated PR creation in the current network configuration. Git push succeeded and the remote development branch was verified at milestone commit `27c3cf4`.
 - Prototype collision is hardcoded; imported geometry has no collision. Release places the slime ahead without ballistics. No saves, audio, feeding, ranch systems, streaming, final gameplay or measured console optimization.
 
 ## Next tasks
