@@ -1,0 +1,40 @@
+name: Desktop prototype
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  desktop:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.95.0
+        with:
+          components: rustfmt
+      - name: Format
+        run: cargo fmt --all -- --check
+      - name: Check
+        run: cargo check --locked --workspace
+      - name: Test
+        run: cargo test --locked --workspace
+      - name: Build desktop
+        run: cargo build --locked -p sr2-desktop
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Windows'
+        with:
+          name: sr2-desktop-windows
+          path: target/debug/sr2-desktop.exe
+  native-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build C++ libnx probe
+        run: bash tools/build-native-probe.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sr2-native-switch-probe
+          path: |
+            target/switch-artifacts/sr2-native-probe.nro
+            target/switch-artifacts/sr2-native-probe.nro.sha256

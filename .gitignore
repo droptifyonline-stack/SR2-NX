@@ -1,0 +1,13 @@
+/target/
+/local-assets/
+/private/
+*.nro
+*.nso
+*.dll
+*.dat
+sr2-dump.cs
+sr2-script.json
+sr2-il2cpp.h
+sr2-stringliteral.json
+__pycache__/
+.venv/

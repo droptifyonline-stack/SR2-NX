@@ -1,0 +1,11 @@
+[package]
+name = "sr2-gameplay"
+version.workspace = true
+edition.workspace = true
+[dependencies]
+bevy = { workspace = true, features = ["gamepad"] }
+sr2-core = { path = "../sr2-core" }
+sr2-platform = { path = "../sr2-platform" }
+
+[features]
+horizon-input = []

@@ -1,0 +1,3 @@
+Workspace unit tests live beside their modules. Render smoke: `cargo run -p sr2-desktop -- --smoke` in a graphical session. This runs 120 frames and checks the placeholder entity exists; it is not a visual correctness or hardware test. Manual acceptance: click to capture mouse, WASD, Space, aim at slime + hold LMB, observe inventory increase, RMB releases, Esc frees mouse. Walk into cube and boundaries to verify collision.
+
+Optional synthetic-asset smoke: set `SR2_ASSET_DIR` and `SR2_SCENE_FILE` to a converted scene, then run `--smoke`. It checks scene children have spawned. `SR2_SMOKE_EXPECT_ANIMATION=1` additionally requires at least one retained animation clip. `SR2_SMOKE_SCREENSHOT` selects a PNG output path; inspect it to verify rendering.
