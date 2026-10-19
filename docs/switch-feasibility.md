@@ -1,5 +1,7 @@
 # Native Switch feasibility and procedure
 
+**Current direction (2026-10-19):** Rust/Bevy are optional per the user. A C++/libnx/OpenGL probe now compiles into a native NRO; use [the current build/hardware procedure](native-probe.md). The Bevy/NVK notes below preserve earlier research and an optional route. NVK preparation was stopped intentionally after the scope change; it is not required by the C++ probe.
+
 ## Evidence and decision
 
 A stock desktop Bevy build cannot simply target Horizon. `switchbrew_bevy` does not implement native rendering. The stronger candidate is [bevy-horizon](https://github.com/JohnUzoka/bevy-horizon/tree/3eac779b232ee47cd0eb957676c64386ac7b0f1d) with [mesa-switch](https://github.com/danfromtico/mesa-switch/tree/606441c90e459028a50fca352daebfc20211f890). Its upstream documentation reports Switch Lite hardware rendering and a Bevy 0.18 game, with a known lit-scene GPU hang. SR2-NX chooses Bevy 0.18.1 so that patch family is usable. V1 behavior, docked mode and sustained stability are open.

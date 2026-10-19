@@ -527,3 +527,8 @@ Then:
 **Do not stop at planning. Write code, compile it, test it, fix errors, and make measurable progress.**
 
 The ultimate goal is a real, playable Slime Rancher 2 experience running natively on the original Nintendo Switch.
+
+
+## CURRENT USER DIRECTION — 2026-10-19
+
+The user clarified: "We dont have to use bevy or rust it was just an suggestion". Engine/language statements above describe the earlier proposal. Rust and Bevy are optional. The current hardware proof is `native/sr2-probe`, using C++17/libnx/OpenGL; the full game's engine remains undecided. Preserve the Rust desktop reference and historical research. Prioritize testing the native NRO on the original Switch before expanding gameplay or choosing a full engine. See `docs/native-probe.md`.

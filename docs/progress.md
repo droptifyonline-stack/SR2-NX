@@ -1,6 +1,6 @@
 # Progress
 
-Current stage: first procedural desktop milestone; native Switch feasibility/integration remains experimental. Client date: 2026-10-18.
+Current stage: native hardware-test milestone compiled; awaiting original Switch V1 execution. Updated 2026-10-19. Earlier desktop evidence dates to 2026-10-18.
 
 ## Implemented
 
@@ -25,7 +25,7 @@ Current stage: first procedural desktop milestone; native Switch feasibility/int
 
 ## Blockers and limits
 
-- Native toolchain container build failed while synchronizing devkitPro packages: `pkg.devkitpro.org` could not resolve in the container; direct proxy request returned HTTP 403. No NVK build, native compilation or `.nro` was completed. Network settings require review/save/publication before retrying.
+- The earlier devkitPro access blocker is resolved in this running session. SDK packages install with verification enabled after supplying the session CA to devkitPro’s separate trust bundle. The native Rust toolchain and upstream capability test compiled and packaged successfully. NVK preparation was stopped after the user made Rust/Bevy optional; no NVK-backed cube or Bevy game NRO was built.
 - No Switch is attached. V1 rendering, input, audio, filesystem, frame timing, memory use and 720p/30 FPS remain unverified. Upstream reports a lit Bevy 0.18 GPU hang; do not assume stable rendering from its demonstrations.
 - Windows installation and dump paths are not mounted in this cloud session. No requested proprietary files were found under accessible workspace/temp locations. Real Unity version, bundles, extraction/conversion, shaders, skeletons and actual game scenes remain untested.
 - Delivery: development branch push succeeded. [PR #1](https://github.com/droptifyonline-stack/SR2-NX/pull/1) was created successfully despite an earlier GitHub REST API read returning Forbidden. The initial implementation milestone is commit `27c3cf4`; later commits update this progress record.
@@ -33,8 +33,17 @@ Current stage: first procedural desktop milestone; native Switch feasibility/int
 
 ## Next tasks
 
-1. Apply saved network settings; rebuild the pinned native toolchain, NVK and upstream hello_switch, then attempt staged SR2-NX native compilation and fix actual diagnostics.
-2. Run upstream and SR2-NX proof-of-concept on the original Switch V1, collect logs/crash reports and sustained frame-time/memory evidence. Resolve upstream lit-scene instability before expanding rendering.
-3. Run the Windows executable; manually verify mouse lock/look, movement, suction and release. CI should execute on GitHub once the branch is available.
-4. Run the local file inventory against the user's installation/dumps, inspect one real bundle privately, convert one slime to GLB, verify materials/scale/animation on desktop, then on Switch.
-5. Add general collision, asset-driven slime archetypes and animation playback only after the platform/content gates produce evidence.
+1. Run the C++ native probe on the original Switch V1 in title-override mode; collect the scene/control observations and its log.
+2. Diagnose actual graphics/lifecycle/performance results before choosing the full game's engine. The Bevy/NVK route is optional research.
+3. Inspect the user's installation/dumps locally, convert one slime privately and validate its materials, scale and animation in the chosen renderer.
+4. Preserve the working Windows/Linux Rust reference. General collision, asset-driven entities and persistence follow the hardware/content gates.
+
+## Native C++ milestone — 2026-10-19
+
+- User removed the Rust/Bevy requirement. Full-game engine choice remains open; existing reference code/research is preserved.
+- Built a C++17/libnx/EGL/OpenGL prototype with procedural ground, obstacle and hopping sphere; controller movement/look, jump/collision, suction/capture/release, reset, inventory markers and diagnostics.
+- `tools/build-native-probe.sh` produces `target/switch-artifacts/sr2-native-probe.nro` using a pinned devkitPro base image. Actual AArch64 compilation/linking and NRO packaging succeeded. Repeated build, NACP title, NRO/ASET bounds and SHA-256 checks passed. Malformed NRO input was rejected. GLSL compilation/link validation passed. C++ formatting checked; no compiler warnings in the final build.
+- **Not run on Switch.** No real hardware rendering, input, frame-rate, memory or lifecycle result is claimed. Native C++ gameplay has compile/static validation only; the six earlier Rust tests do not test this new implementation.
+- The upstream Bevy capability-test NRO also built, with RomFS/ASET validation. It is an optional diagnostic, not the game. Its notices and build metadata accompany the artifact.
+- Linux/Windows desktop executables remain intact. Generated desktop build intermediates were cleared for native-build disk space; later builds will recompile them.
+- Next action: run the C++ NRO on V1 in title-override mode, verify visible scene/controls and collect `sdmc:/switch/sr2-native-probe/log.txt`. Then choose the engine based on measured platform behavior and inspect one real SR2 asset privately. See `docs/native-probe.md`.

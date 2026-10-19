@@ -31,3 +31,7 @@ The README reports hardware testing on ONE Switch Lite: hello_switch 60 FPS, ren
 - https://github.com/AssetRipper/AssetRipper: exports Unity serialized data into a project; README advertises Unity 3.5–6000.4 support with varying quality. It does not establish SR2 compatibility or Bevy-ready materials.
 - https://github.com/K0lb3/UnityPy: Python inspection/export library for serialized Unity objects, textures, meshes and more. Its documentation warns APIs change between minor versions. Optional tooling pins 1.25.4, identified from PyPI metadata. No real SR2 bundle has been parsed here.
 - glTF/GLB is the prototype interchange format supported by Bevy. Embedded materials/skins/animations are loader inputs, not an automatic translation of Unity HDRP shaders, animator controllers, Addressables or prefab behavior. Blender can serve as a manual mesh/animation conversion stage; no automated Blender pipeline is claimed.
+
+## Native C++ path (2026-10-19)
+
+The user removed the language/engine requirement. `switchbrew/switch-examples` at `669786898205b7beb25ff1731e72982e6d0397d3` documents libnx/EGL/OpenGL using switch-mesa, switch-glad and switch-glm, and marks its examples public domain. This is the basis for the current procedural C++ hardware probe. It compiles without Rust/Bevy/NVK. The SDK package/trust issue was corrected and the native toolchain works; optional NVK prerequisite compilation was deliberately stopped after the scope change. No upstream or SR2-NX rendering has been verified on this user's V1 console.

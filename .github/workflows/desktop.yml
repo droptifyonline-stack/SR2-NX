@@ -26,3 +26,15 @@ jobs:
         with:
           name: sr2-desktop-windows
           path: target/debug/sr2-desktop.exe
+  native-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build C++ libnx probe
+        run: bash tools/build-native-probe.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sr2-native-switch-probe
+          path: |
+            target/switch-artifacts/sr2-native-probe.nro
+            target/switch-artifacts/sr2-native-probe.nro.sha256

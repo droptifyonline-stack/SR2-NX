@@ -30,3 +30,14 @@ cargo build --locked -p sr2-desktop --target x86_64-pc-windows-gnu --target-dir 
 A PE executable proves cross-compilation, not Windows execution. Windows CI builds with its native toolchain. Native Switch instructions and blockers are separate in `switch-feasibility.md`.
 
 The saved configuration draft adds `pkg.devkitpro.org` for native SDK packages and `api.github.com` for PR API access. Review and save these changes in Environment Settings, then publish the environment. Saving the draft alone did not update this running machine's network policy.
+
+## Current native C++ workflow (2026-10-19)
+
+The user clarified that Rust/Bevy are optional. The native proof now builds with:
+
+```sh
+cd /workspace/SR2-NX
+CONTAINER_ENGINE=/workspace/sr2-system/native/docker-proxy bash tools/build-native-probe.sh
+```
+
+This uses `sr2-libnx-toolchain:local` (C++/libnx/Mesa/glad/GLM), building it from the tracked Containerfile if absent. The wrapper retains managed Docker proxy/credential configuration and supplies ephemeral system/devkitPro CA trust. Native output and its SHA-256 are under `target/switch-artifacts`. No Rust toolchain or NVK build is needed for this target. The earlier SDK network denial is resolved in this running session; historical network-draft instructions above describe the earlier blocker. The saved default install workflow now prepares the C++ target. Optional Rust desktop refresh remains available through `/workspace/sr2-system/install.sh`; that recompiles intermediates cleared to free disk space. The retained Linux and Windows executables were checksum-verified unchanged.

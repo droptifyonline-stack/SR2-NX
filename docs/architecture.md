@@ -13,3 +13,7 @@ The first prototype uses a kinematic player, ground height, bounded arena and on
 ## Performance plan
 
 Use the 33.3 ms budget as a measurement target, not a performance promise. Start with one directional light without shadows, low-poly placeholders and simple materials. Bevy supplies frustum culling. Profile CPU/GPU frame times separately on V1 hardware, track process and GPU allocations, then cap draw calls and texture budgets based on measurements. Investigate 512/1024 texture tiers and backend-supported BC formats before assuming ASTC support. Add distance-based AI scheduling, pooled effects, region streaming, mesh LOD and bounded physics only as entity/content counts justify them. The console's 4 GB is shared with the OS; homebrew title mode has less usable memory and GPU allocations share its heap.
+
+## Current native hardware probe
+
+`native/sr2-probe` is an independent C++17/libnx/OpenGL experiment. It uses procedural meshes and a small kinematic gameplay loop, plus SD logging for graphics/frame/memory diagnostics. It does not share Rust gameplay code or load Unity assets. The existing Rust implementation is a desktop reference; the full-game engine and authoritative gameplay implementation should be chosen after hardware evidence. This probe is intentionally small rather than a complete engine.
