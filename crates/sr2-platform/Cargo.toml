@@ -1,0 +1,5 @@
+[package]
+name = "sr2-platform"
+version.workspace = true
+edition.workspace = true
+[dependencies]

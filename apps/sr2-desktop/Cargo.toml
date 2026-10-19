@@ -1,0 +1,9 @@
+[package]
+name = "sr2-desktop"
+version.workspace = true
+edition.workspace = true
+[dependencies]
+bevy = { workspace = true, features = ["bevy_winit", "x11"] }
+sr2-gameplay = { path = "../../crates/sr2-gameplay" }
+sr2-assets = { path = "../../crates/sr2-assets" }
+serde_json.workspace = true

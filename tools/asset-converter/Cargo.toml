@@ -1,0 +1,8 @@
+[package]
+name = "asset-converter"
+version.workspace = true
+edition.workspace = true
+[dependencies]
+sr2-assets = { path = "../../crates/sr2-assets" }
+serde_json.workspace = true
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "tga", "bmp"] }

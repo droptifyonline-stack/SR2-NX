@@ -1,0 +1,8 @@
+[package]
+name = "sr2-switch"
+version.workspace = true
+edition.workspace = true
+[target.'cfg(target_os = "horizon")'.dependencies]
+bevy.workspace = true
+sr2-gameplay = { path = "../../crates/sr2-gameplay" }
+bevy_horizon = { git = "https://github.com/JohnUzoka/bevy-horizon", rev = "3eac779b232ee47cd0eb957676c64386ac7b0f1d", default-features = false, features = ["bevy_0_18", "vulkan", "render_0_18"] }
